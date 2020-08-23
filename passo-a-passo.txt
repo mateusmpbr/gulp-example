@@ -1,0 +1,40 @@
+1 - Instalar node.js (com npm e npx)
+2 - Remover versões anteriores do Gulp -> No terminal: npm rm --global gulp
+3 - Instalar o Gulp globalmente -> No terminal: npm install --global gulp-cli
+4 - Criar um projeto -> No terminal: npx mkdirp my-project
+5 - Navegar até ele -> No terminal: cd my-project
+6 - Criar package.json -> No terminal: npm init -y
+7 - Instalar o Gulp como devDependencies -> No terminal: npm install --save-dev gulp
+8 - Verificar versão do Gulp: gulp --version
+9 - Criar "gulpfile.js"
+10 - Separar em duas pastas ("src" e "build"), em que "src" é o projeto original e "build" é após passar pelo Gulp 
+11 - Crias tasks desejadas:
+    - Exemplo -> Para minificar imagens:
+        - No terminal: npm install --save-dev gulp-imagemin
+            - Opção 1:
+                - No gulpfile.js:
+                    const gulp = require('gulp');
+                    const imagemin = require('gulp-imagemin');
+                    
+                    exports.default = () => (
+                        gulp.src('src/images/*')
+                            .pipe(imagemin())
+                            .pipe(gulp.dest('dist/images'))
+                    );
+                - No terminal: gulp
+            - Opção 2:
+                - No gulpfile.js:
+                    const gulp = require('gulp');
+                    const imagemin = require('gulp-imagemin');
+
+                    gulp.task('imagemin', async function(){
+                    gulp.src('src/img/**/*')
+                        .pipe(imagemin())
+                        .pipe(gulp.dest('build/img/'))
+                })
+                - No terminal: gulp imagemin
+    - Outros plug-ins:
+        - npm install gulp-clean-css --save-dev
+        - npm install gulp-autoprefixer --save-dev
+        - npm install gulp-concat --save-dev
+	- npm install browser-sync --save-dev 
